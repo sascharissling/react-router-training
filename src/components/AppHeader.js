@@ -36,21 +36,21 @@ const AppBar = styled.header`
   height: 65px;
 `;
 
-const SearchBar = styled.input`
-  width: 100vw;
-  height: 65px;
-  background: #ffe;
-  border: none;
-  font-size: 16px;
-  padding: 5px;
-`;
-
 const SearchForm = styled.div`
   width: 100vw;
   display: flex;
   background: #ffe;
   justify-content: space-between;
   align-items: center;
+`;
+
+const SearchInput = styled.input`
+  width: 100vw;
+  height: 65px;
+  background: #ffe;
+  border: none;
+  font-size: 1.3rem;
+  padding: 14px;
 `;
 
 const ClearButton = styled.button`
@@ -76,7 +76,7 @@ export default function Header() {
         </SearchButton>
       </AppBar>
       <SearchForm>
-        <SearchBar type="text" placeholder="Search for movies..." />
+        <SearchInput type="text" placeholder="Search for movies..." />
         <ClearButton>
           <Clear></Clear>
         </ClearButton>
