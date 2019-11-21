@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Logo from "./Logo";
+import { keyframes } from "@emotion/core";
 
 import SearchIcon from "@material-ui/icons/Search";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -42,6 +43,7 @@ const SearchForm = styled.div`
   background: #ffe;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0px 0px 21px 0px rgba(31, 31, 31, 1);
 `;
 
 const SearchInput = styled.input`
@@ -53,6 +55,15 @@ const SearchInput = styled.input`
   padding: 14px;
 `;
 
+const flip = keyframes`
+ 0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+`;
 const ClearButton = styled.button`
   background: transparent;
   outline: none;
@@ -60,27 +71,33 @@ const ClearButton = styled.button`
   justify-content: center;
   padding: 0;
   :hover {
-    transform: rotate(45deg);
+    animation: ${flip} 0.4s ease;
   }
 `;
 
 //STYLE End
 
 export default function Header() {
+  const [showSearch, setShowSearch] = React.useState(false);
+
   return (
     <>
-      <AppBar>
-        <Logo text="MovieClerk 🤵🏻" />
-        <SearchButton>
-          <Search></Search>
-        </SearchButton>
-      </AppBar>
-      <SearchForm>
-        <SearchInput type="text" placeholder="Search for movies..." />
-        <ClearButton>
-          <Clear></Clear>
-        </ClearButton>
-      </SearchForm>
+      {!showSearch && (
+        <AppBar>
+          <Logo text="MovieClerk 🤵🏻" />
+          <SearchButton active={showSearch} onClick={() => setShowSearch(true)}>
+            <Search></Search>
+          </SearchButton>
+        </AppBar>
+      )}
+      {showSearch && (
+        <SearchForm>
+          <SearchInput type="text" placeholder="Search for movies..." />
+          <ClearButton active={showSearch} onClick={() => setShowSearch(false)}>
+            <Clear></Clear>
+          </ClearButton>
+        </SearchForm>
+      )}
     </>
   );
 }
