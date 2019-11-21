@@ -53,6 +53,10 @@ const SearchInput = styled.input`
   border: none;
   font-size: 1.3rem;
   padding: 14px;
+  color: #333;
+  :focus {
+    outline: none;
+  }
 `;
 
 const flip = keyframes`
@@ -92,7 +96,11 @@ export default function Header() {
       )}
       {showSearch && (
         <SearchForm>
-          <SearchInput type="text" placeholder="Search for movies..." />
+          <SearchInput
+            autoFocus
+            type="text"
+            placeholder="Search for movies..."
+          />
           <ClearButton active={showSearch} onClick={() => setShowSearch(false)}>
             <Clear></Clear>
           </ClearButton>
