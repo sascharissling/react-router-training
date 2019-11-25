@@ -10,8 +10,7 @@ const AppContainer = styled.div`
 
 const SearchResults = styled.main`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 `;
