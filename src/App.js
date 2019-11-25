@@ -16,12 +16,18 @@ const SearchResults = styled.main`
 `;
 
 export default function App() {
+  const [movieSearchValue, setMovieSearchValue] = React.useState("Leon");
+
+  function handleSearch(value) {
+    setMovieSearchValue(value);
+  }
+
   return (
     <AppContainer>
       <GlobalStyles />
-      <Header />
+      <Header onSearch={handleSearch} inputValue={movieSearchValue} />
       <SearchResults>
-        <MovieList />
+        <MovieList searchValue={movieSearchValue} />
       </SearchResults>
     </AppContainer>
   );

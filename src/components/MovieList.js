@@ -34,30 +34,33 @@ const MovieImage = styled.img`
 `;
 //STYLE End
 
-export default function MovieList() {
+export default function MovieList({ searchValue }) {
   const [movies, setMovies] = React.useState([]);
 
-  console.log(movies);
   async function refreshMovies() {
-    const discoveredMovies = await getDiscoverMovies();
+    const discoveredMovies = await getDiscoverMovies(searchValue);
     setMovies(discoveredMovies);
   }
   React.useEffect(() => {
     refreshMovies();
-  }, []);
+  });
 
-  return (
-    <>
-      {movies.map(movie => (
-        <Container key={movie.id}>
-          <MovieImage
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt=""
-          />
-          <MovieTitle>{movie.title}</MovieTitle>
-          <MovieDescription>{movie.overview}</MovieDescription>
-        </Container>
-      ))}
-    </>
-  );
+  if (!movies) {
+    return <MovieTitle>Sorry, no movies found!</MovieTitle>;
+  } else {
+    return (
+      <>
+        {movies.map(movie => (
+          <Container key={movie.id}>
+            <MovieImage
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt="movie image"
+            />
+            <MovieTitle>{movie.title}</MovieTitle>
+            <MovieDescription>{movie.overview}</MovieDescription>
+          </Container>
+        ))}
+      </>
+    );
+  }
 }

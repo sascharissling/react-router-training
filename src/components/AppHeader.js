@@ -81,8 +81,17 @@ const ClearButton = styled.button`
 
 //STYLE End
 
-export default function Header() {
+export default function Header({ onSearch, inputValue }) {
   const [showSearch, setShowSearch] = React.useState(false);
+
+  function handleChange(event) {
+    const value = event.target.value;
+    onSearch(value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
 
   return (
     <>
@@ -95,11 +104,13 @@ export default function Header() {
         </AppBar>
       )}
       {showSearch && (
-        <SearchForm>
+        <SearchForm onSubmit={handleSubmit}>
           <SearchInput
             autoFocus
             type="text"
             placeholder="Search for movies..."
+            onChange={handleChange}
+            value={inputValue}
           />
           <ClearButton active={showSearch} onClick={() => setShowSearch(false)}>
             <Clear></Clear>
