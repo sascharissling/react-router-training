@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import Logo from "./Logo";
 import { keyframes } from "@emotion/core";
+import PropTypes, { string } from "prop-types";
 
 import SearchIcon from "@material-ui/icons/Search";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -120,3 +121,7 @@ export default function Header({ onSearch, inputValue }) {
     </>
   );
 }
+
+Logo.propTypes = {
+  text: PropTypes.string
+};
