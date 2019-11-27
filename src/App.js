@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import GlobalStyles from "./components/GlobalStyles";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/AppHeader.js";
 import About from "./pages/About";
 import Shop from "./pages/Shop";
