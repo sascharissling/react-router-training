@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import Logo from "./Logo";
 import { keyframes } from "@emotion/core";
+import { Link } from "react-router-dom";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -37,6 +38,14 @@ const AppBar = styled.header`
   height: 65px;
 `;
 
+const LinkName = styled.h3`
+  color: #ffe;
+  font-size: 1.2rem;
+  &:hover {
+    color: black;
+  }
+`;
+
 const Navigation = styled.nav`
   display: flex;
   flex-flow: row nowrap;
@@ -64,15 +73,6 @@ const ClearButton = styled.button`
   }
 `;
 
-const MenuItem = styled.a`
-  cursor: pointer;
-  h3 {
-    &:hover {
-      color: darkslategray;
-    }
-  }
-`;
-
 //STYLE End
 
 export default function Header() {
@@ -82,7 +82,7 @@ export default function Header() {
     <>
       {!showNav && (
         <AppBar>
-          <Logo text="SickApp 🤵🏻" />
+          <Logo text="🐲" />
           <SearchButton active={showNav} onClick={() => setShowNav(true)}>
             <Search></Search>
           </SearchButton>
@@ -90,15 +90,15 @@ export default function Header() {
       )}
       {showNav && (
         <Navigation>
-          <MenuItem href="/">
-            <h3>Home</h3>
-          </MenuItem>
-          <MenuItem href="/about">
-            <h3>About</h3>
-          </MenuItem>
-          <MenuItem href="/shop">
-            <h3>Shop</h3>
-          </MenuItem>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <LinkName>Home</LinkName>
+          </Link>
+          <Link to="/about" style={{ textDecoration: "none" }}>
+            <LinkName>About</LinkName>
+          </Link>
+          <Link to="/shop" style={{ textDecoration: "none" }}>
+            <LinkName>Shop</LinkName>
+          </Link>
           <ClearButton active={showNav} onClick={() => setShowNav(false)}>
             <Clear></Clear>
           </ClearButton>

@@ -5,7 +5,7 @@ const HomeWindow = styled.div`
   width: 90vw; 
   height 90vh; 
   background: #ffe; 
-  h1 {
+  * {
     color: black; 
   }
 `;
@@ -13,7 +13,8 @@ const HomeWindow = styled.div`
 export default function Home() {
   return (
     <HomeWindow>
-      <h1>This is the Home page</h1>
+      <h1>Home</h1>
+      <p>Welcome to this amazingly awesome homepage</p>
     </HomeWindow>
   );
 }
