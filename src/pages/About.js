@@ -4,17 +4,17 @@ import styled from "@emotion/styled";
 const AboutWindow = styled.div`
   width: 90vw; 
   height 90vh; 
-  background: #ffe; 
-  * {
-    color: black; 
-  }
+
 `;
 
 export default function About() {
   return (
     <AboutWindow>
       <h1>About </h1>
-      <p>Welcome to this amazingly awesome homepage</p>
+      <p>
+        Welcome to this amazingly awesome react website. This is the about
+        section and there is nothing to see here.
+      </p>
     </AboutWindow>
   );
 }
