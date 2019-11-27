@@ -3,6 +3,11 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
 //STYLE Start
+
+const RouterLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const ShopWindow = styled.div`
   display: flex;
   flex-flow: row wrap;
@@ -13,7 +18,7 @@ const ShopWindow = styled.div`
 `;
 
 const Container = styled.div`
-  background: white;
+  background: #ffe;
   width: 120px;
   height: 200px;
   height: auto;
@@ -78,14 +83,13 @@ export default function Shop() {
       <h1>Shop</h1>
       <ShopWindow>
         {items.map(item => (
-          <Link
+          <RouterLink
             to={`/shop/${item.itemId}`}
             key={item.itemId}
             style={{ textDecoration: "none" }}
           >
             <Container>
-              <ItemTitle>{item.item.name}</ItemTitle>
-              <ItemImage src={item.item.images.icon} alt="item image" />
+              <ItemImage src={item.item.images.information} alt="item image" />
               {item.item.description && (
                 <ItemDescription>{item.item.description}</ItemDescription>
               )}
@@ -94,7 +98,7 @@ export default function Shop() {
               )}
               <ItemPrice>☈{item.store.cost}</ItemPrice>
             </Container>
-          </Link>
+          </RouterLink>
         ))}
       </ShopWindow>
     </>
