@@ -2,14 +2,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import Logo from "./Logo";
 import { keyframes } from "@emotion/core";
-import PropTypes, { string } from "prop-types";
 
-import SearchIcon from "@material-ui/icons/Search";
+import MenuIcon from "@material-ui/icons/Menu";
 import ClearIcon from "@material-ui/icons/Clear";
 
 //STYLE Start
 
-const Search = styled(SearchIcon)`
+const Search = styled(MenuIcon)`
   zoom: 1.5;
   margin: 5px;
   color: #ffe;
@@ -21,7 +20,7 @@ const Search = styled(SearchIcon)`
 const Clear = styled(ClearIcon)`
   zoom: 1.5;
   margin: 5px;
-  color: grey;
+  color: #ffe;
 `;
 const SearchButton = styled.button`
   background: transparent;
@@ -38,26 +37,11 @@ const AppBar = styled.header`
   height: 65px;
 `;
 
-const SearchForm = styled.div`
-  width: 100vw;
+const Navigation = styled.nav`
   display: flex;
-  background: #ffe;
+  flex-flow: row nowrap;
   justify-content: space-between;
-  align-items: center;
-  box-shadow: 0px 0px 21px 0px rgba(31, 31, 31, 1);
-`;
-
-const SearchInput = styled.input`
-  width: 100vw;
-  height: 65px;
-  background: #ffe;
-  border: none;
-  font-size: 1.3rem;
-  padding: 14px;
-  color: #333;
-  :focus {
-    outline: none;
-  }
+  background: transparent;
 `;
 
 const flip = keyframes`
@@ -80,48 +64,46 @@ const ClearButton = styled.button`
   }
 `;
 
+const MenuItem = styled.a`
+  cursor: pointer;
+  h3 {
+    &:hover {
+      color: darkslategray;
+    }
+  }
+`;
+
 //STYLE End
 
-export default function Header({ onSearch, inputValue }) {
-  const [showSearch, setShowSearch] = React.useState(false);
-
-  function handleChange(event) {
-    const value = event.target.value;
-    onSearch(value);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+export default function Header() {
+  const [showNav, setShowNav] = React.useState(false);
 
   return (
     <>
-      {!showSearch && (
+      {!showNav && (
         <AppBar>
-          <Logo text="MovieClerk 🤵🏻" />
-          <SearchButton active={showSearch} onClick={() => setShowSearch(true)}>
+          <Logo text="SickApp 🤵🏻" />
+          <SearchButton active={showNav} onClick={() => setShowNav(true)}>
             <Search></Search>
           </SearchButton>
         </AppBar>
       )}
-      {showSearch && (
-        <SearchForm onSubmit={handleSubmit}>
-          <SearchInput
-            autoFocus
-            type="text"
-            placeholder="Search for movies..."
-            onChange={handleChange}
-            value={inputValue}
-          />
-          <ClearButton active={showSearch} onClick={() => setShowSearch(false)}>
+      {showNav && (
+        <Navigation>
+          <MenuItem href="/">
+            <h3>Home</h3>
+          </MenuItem>
+          <MenuItem href="/about">
+            <h3>About</h3>
+          </MenuItem>
+          <MenuItem href="/shop">
+            <h3>Shop</h3>
+          </MenuItem>
+          <ClearButton active={showNav} onClick={() => setShowNav(false)}>
             <Clear></Clear>
           </ClearButton>
-        </SearchForm>
+        </Navigation>
       )}
     </>
   );
 }
-
-Logo.propTypes = {
-  text: PropTypes.string
-};
