@@ -58,7 +58,10 @@ const ItemImage = styled.img`
 //STYLE End
 
 export default function ItemDetail({ match }) {
-  const [item, setItem] = React.useState([]);
+  const [shopItem, setShopItem] = React.useState({
+    itemId: "",
+    item: { name: "wurst" }
+  });
   React.useEffect(() => {
     getFortniteItem();
     console.log(match);
@@ -75,9 +78,13 @@ export default function ItemDetail({ match }) {
       }
     );
     const item = await data.json();
-    console.log(item.data);
-    setItem(item.data);
+    setShopItem(item.data[0]);
   }
-
-  return <ItemTitle>itemname</ItemTitle>;
+  console.log(shopItem);
+  return (
+    <ShopWindow>
+      <ItemTitle>{shopItem.item.name}</ItemTitle>
+      {/* <ItemImage src={shopItem.item.images.featured} /> */}
+    </ShopWindow>
+  );
 }
