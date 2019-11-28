@@ -9,12 +9,24 @@ import ClearIcon from "@material-ui/icons/Clear";
 
 //STYLE Start
 
+const flip2 = keyframes`
+ 0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-90deg);
+  }
+`;
+
 const Search = styled(MenuIcon)`
   zoom: 1.5;
   margin: 5px;
   color: #ffe;
   &:hover {
     color: slategrey;
+    animation: ${flip2} 0.4s ease;
+    animation-fill-mode: forwards;
   }
 `;
 
@@ -51,6 +63,7 @@ const Navigation = styled.nav`
   flex-flow: row nowrap;
   justify-content: space-between;
   background: transparent;
+  align-items: center;
 `;
 
 const flip = keyframes`
@@ -62,6 +75,7 @@ const flip = keyframes`
     transform: rotate(360deg);
   }
 `;
+
 const ClearButton = styled.button`
   background: transparent;
   outline: none;
@@ -70,6 +84,7 @@ const ClearButton = styled.button`
   padding: 0;
   :hover {
     animation: ${flip} 0.4s ease;
+    animation-fill-mode: forwards;
   }
 `;
 
@@ -90,6 +105,7 @@ export default function Header() {
       )}
       {showNav && (
         <Navigation>
+          <Logo text="🐲" />
           <Link to="/" style={{ textDecoration: "none" }}>
             <LinkName>Home</LinkName>
           </Link>

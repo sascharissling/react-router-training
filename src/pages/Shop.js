@@ -20,7 +20,7 @@ const ShopWindow = styled.div`
 const Container = styled.div`
   background: #ffe;
   width: 120px;
-  height: 200px;
+  height: 240px;
   height: auto;
   border-radius: 30px;
   margin: 10px;
@@ -37,7 +37,8 @@ const ItemTitle = styled.h4`
 `;
 
 const ItemDescription = styled.p`
-  color: black;
+  color: grey;
+  font-style: italic;
   font-size: 0.8em;
   margin: 5px 10px 15px 10px;
 `;
@@ -48,13 +49,6 @@ const ItemPrice = styled.h5`
   margin: 5px 10px 15px 10px;
 `;
 
-const NoDescription = styled.p`
-  color: black;
-  font-style: italic;
-  font-size: 0.8em;
-  margin: 5px 10px 15px 10px;
-  color: grey;
-`;
 
 const ItemImage = styled.img`
   width: 100%;
@@ -68,7 +62,11 @@ export default function Shop() {
 
   async function getFortniteItems() {
     const data = await fetch(
-      "https://fortnite-api.theapinetwork.com/store/get"
+      "https://fnapi.me/api/shop/?lang=en",{
+        headers: {
+          Authorization: 'f6499ecdfcf8e346d92e7e9d59b3f90a29f9e8284d3e3a8c8c02758702e8fe32'
+        }
+      }
     );
     const items = await data.json();
     console.log(items.data);
@@ -83,19 +81,15 @@ export default function Shop() {
       <h1>Shop</h1>
       <ShopWindow>
         {items.map(item => (
-          <RouterLink
-            to={`/shop/${item.itemId}`}
-            key={item.itemId}
-            style={{ textDecoration: "none" }}
-          >
+          <RouterLink to={`/shop/${item.itemId}`} key={item.itemId}>
             <Container>
-              <ItemImage src={item.item.images.information} alt="item image" />
-              {item.item.description && (
-                <ItemDescription>{item.item.description}</ItemDescription>
-              )}
-              {!item.item.description && (
-                <NoDescription>No description available</NoDescription>
-              )}
+              <ItemImage src={item.item.images.icon} alt="item image" />
+              
+                <ItemTitle>{item.item.name}</ItemTitle>
+              
+              
+                <ItemDescription>{item.item.rarity}</ItemDescription>
+              
               <ItemPrice>☈{item.store.cost}</ItemPrice>
             </Container>
           </RouterLink>
